@@ -1,0 +1,197 @@
+{
+  "env": {
+    "es2021": true
+  },
+  "globals": {
+    "console": "readonly"
+  },
+  "root": true,
+  "ignorePatterns": [
+    "**/*",
+    "!tsconfig.json",
+    "!src",
+    "!src/*"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  // https://eslint.org/docs/rules/
+  "rules": {
+    // * Возможные проблемы
+    "array-callback-return": "error",
+    "no-constructor-return": "error",
+    "no-duplicate-imports": [
+      "error",
+      {
+        "includeExports": true
+      }
+    ],
+    "no-promise-executor-return": "error",
+    "no-self-compare": "error",
+    "no-unmodified-loop-condition": "error",
+    "no-unreachable-loop": "error",
+    "no-unused-private-class-members": "error",
+    // Переопределено в @typescript-eslint
+    "no-use-before-define": "off",
+    "require-atomic-updates": "error",
+    // * Предложения
+    "accessor-pairs": "error",
+    "camelcase": "error",
+    "class-methods-use-this": "off",
+    "curly": [
+      "error",
+      "multi-line"
+    ],
+    "default-case": "error",
+    "default-case-last": "error",
+    "default-param-last": [
+      "error"
+    ],
+    "eqeqeq": "error",
+    "grouped-accessor-pairs": [
+      "error",
+      "getBeforeSet"
+    ],
+    "no-else-return": [
+      "error",
+      {
+        "allowElseIf": false
+      }
+    ],
+    "no-lonely-if": "error",
+    "no-loop-func": "error",
+    "no-mixed-operators": "error",
+    "no-multi-assign": "error",
+    "no-new-wrappers": "error",
+    "no-return-assign": "error",
+    "no-return-await": "error",
+    "no-sequences": "error",
+    "no-unneeded-ternary": "error",
+    "no-unused-expressions": [
+      "error",
+      {
+        "allowShortCircuit": true,
+        "allowTernary": true
+      }
+    ],
+    "no-useless-computed-key": "error",
+    "no-useless-concat": "error",
+    "no-useless-return": "error",
+    "no-var": "error",
+    "object-shorthand": [
+      "error",
+      "always",
+      {
+        "avoidExplicitReturnArrows": true
+      }
+    ],
+    "operator-assignment": [
+      "error",
+      "always"
+    ],
+    "prefer-const": [
+      "error",
+      {
+        "destructuring": "all",
+        "ignoreReadBeforeAssign": true
+      }
+    ],
+    "prefer-exponentiation-operator": "error",
+    "prefer-numeric-literals": "error",
+    "prefer-object-has-own": "error",
+    "prefer-object-spread": "error",
+    "prefer-promise-reject-errors": "error",
+    "prefer-regex-literals": [
+      "error",
+      {
+        "disallowRedundantWrapping": true
+      }
+    ],
+    "prefer-rest-params": "error",
+    "prefer-spread": "error",
+    "prefer-template": "error",
+    "quote-props": [
+      "error",
+      "as-needed",
+      {
+        "numbers": true
+      }
+    ],
+    "require-await": "error",
+    // "require-unicode-regexp": "error",
+    "yoda": [
+      "error",
+      "never",
+      {
+        "exceptRange": true
+      }
+    ],
+    // * Макет и форматирование.
+    "arrow-parens": [
+      "error",
+      "always"
+    ],
+    "comma-dangle": [
+      "error",
+      "never"
+    ],
+    "dot-location": [
+      "error",
+      "property"
+    ],
+    "new-parens": "error",
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "semi": [
+      "error",
+      "never"
+    ],
+    "wrap-iife": [
+      "error",
+      "outside"
+    ],
+    // Для eslint отключаем эту опцию - он не разбирается в типах и подсвечивает такую ошибку:
+    // (T & { [k in K]: unknown })
+    //         ^ no-unused-vars
+    "no-unused-vars": "off",
+    // * TypeScript https://typescript-eslint.io/rules/
+    "@typescript-eslint/await-thenable": [
+      "error"
+    ],
+    "@typescript-eslint/class-literal-property-style": [
+      "error",
+      "getters"
+    ],
+    // Обязательная опция, отключена в eslint, см.выше.
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "varsIgnorePattern": "^_+$",
+        "argsIgnorePattern": "^_+$"
+      }
+    ],
+    "@typescript-eslint/no-use-before-define": [
+      "error",
+      {
+        "ignoreTypeReferences": true,
+        "typedefs": false,
+        "functions": false,
+        "classes": false,
+        "variables": true,
+        "allowNamedExports": false
+      }
+    ]
+  }
+}

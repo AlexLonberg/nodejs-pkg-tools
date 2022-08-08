@@ -1,0 +1,7 @@
+.private/
+.tsbuildinfo/
+.coverage/
+**/node_modules/
+dist/
+temp/
+npm/

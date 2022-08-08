@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    // * Type Checking
+    "strict": true,
+    "allowUnreachableCode": false,
+    "exactOptionalPropertyTypes": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    // * JavaScript Support
+    "allowJs": false,
+    "checkJs": false,
+    // * Modules
+    "module": "NodeNext",
+    "moduleResolution": "nodenext",
+    "rootDir": "./src",
+    "types": [
+      "node",
+      "jest"
+    ],
+    // * Language and Environment
+    // Для текущей версии NodeJS смотрим поддержку здесь https://node.green/
+    "target": "ES2022",
+    // * Emit
+    "noEmit": true,
+    // * Completeness
+    "skipLibCheck": false,
+    // * Interop Constraints
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "forceConsistentCasingInFileNames": true,
+    // * Editor Support
+    "disableSizeLimit": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts"
+  ]
+}

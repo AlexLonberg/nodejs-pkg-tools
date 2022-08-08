@@ -1,0 +1,48 @@
+{
+  "files.exclude": {
+    "**/.git": true,
+    "**/node_modules": true
+  },
+  "search.exclude": {
+    "**/.git": true,
+    "**/node_modules": true,
+    "dist": true,
+    "npm": true
+  },
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "jest.autoRun": {
+    "watch": false
+  },
+  "vsicons.associations.files": [
+    {
+      "icon": "tsconfig",
+      "format": "svg",
+      "filename": true,
+      "extensions": [
+        "tsconfig.dist.json"
+      ]
+    }
+  ],
+  "typescript.implementationsCodeLens.enabled": false,
+  "typescript.referencesCodeLens.enabled": false,
+  "typescript.referencesCodeLens.showOnAllFunctions": false,
+  // Цвета комментария в теме.
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "name": "Comment",
+        "scope": [
+          "comment",
+          "punctuation.definition.comment"
+        ],
+        "settings": {
+          "fontStyle": "italic",
+          "foreground": "#a1a1a1"
+        }
+      }
+    ]
+  },
+  "cSpell.words": [
+    "publicrw"
+  ]
+}
