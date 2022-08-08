@@ -3,7 +3,7 @@
 
 Чтение, модификация и запись `*.json` файлов. 
 
-    npm i pkg-tools
+    npm i nodejs-pkg-tools
 
 - [Использование](#использование)
 - [Обработка узлов](#обработка-узлов)
@@ -98,7 +98,7 @@ const nodeRoot = rwModify({
 import { 
   type INodeRoot, ... несколько разных типов,
   makeModifier, modify, rwModify 
-} from 'pkg-tools'
+} from 'nodejs-pkg-tools'
 
 // Модификатор используемый в параметре Options.sample.
 const marker = makeModifier(boolean | Modifier): ModifierMarker
@@ -155,7 +155,7 @@ __Options.sample__: `{...}|[...][]`
 Объект или массив позволяющий _удалять/модифицировать/устанавливать_ новые свойства и их значения. В отличие от `include/exclude`, здесь нет определенного порядка действий. Свойства можно удалить, добавить, изменить и снова удалить.
 
 ```js
-import { type Sample, makeModifier, modify, rwModify } from 'pkg-tools'
+import { type Sample, makeModifier, modify, rwModify } from 'nodejs-pkg-tools'
 
 const sample: Sample = {
   // Отметим весь узел для удаления...
