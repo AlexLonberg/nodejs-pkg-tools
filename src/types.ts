@@ -238,7 +238,7 @@ interface IErrors {
   hasWarningCode (code: TErrorCode): boolean
 }
 
-interface INodeRoot {
+interface IRootNode {
   readonly mode: IEditMode
   readonly errors: IErrors
   /**
@@ -273,5 +273,5 @@ export type {
   IEditMode,
   ErrorInfo,
   IErrors,
-  INodeRoot
+  IRootNode
 }

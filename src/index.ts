@@ -18,7 +18,7 @@ export type {
   IEditMode,
   ErrorInfo,
   IErrors,
-  INodeRoot
+  IRootNode
 } from './types.js'
 export {
   type Primitive,

@@ -1,4 +1,4 @@
-import type { IEditMode, IErrors, INodeRoot, Options } from './types.js'
+import type { IEditMode, IErrors, IRootNode, Options } from './types.js'
 import type { IRNode } from './interfaces.js'
 import { editingStage } from './constants.js'
 import { Errors } from './errors.js'
@@ -6,7 +6,7 @@ import { createEditMode, createEditStage, createHelper } from './helper.js'
 import { prepareOptions } from './prepare.js'
 import { changeProperties, changeRetentionStatus } from './change.js'
 
-function nodeRootError (mode: IEditMode, e: IErrors): INodeRoot {
+function nodeRootError (mode: IEditMode, e: IErrors): IRootNode {
   return {
     get mode (): IEditMode { return mode },
     get errors (): IErrors { return e },
@@ -15,7 +15,7 @@ function nodeRootError (mode: IEditMode, e: IErrors): INodeRoot {
   }
 }
 
-function nodeRoot (mode: IEditMode, e: IErrors, node: IRNode, space: number): INodeRoot {
+function nodeRoot (mode: IEditMode, e: IErrors, node: IRNode, space: number): IRootNode {
   return {
     get mode (): IEditMode { return mode },
     get errors (): IErrors { return e },
@@ -32,10 +32,10 @@ function nodeRoot (mode: IEditMode, e: IErrors, node: IRNode, space: number): IN
  * Модификация JSON строки или объекта.
  * 
  * @param options В опциях должен быть указан один из вариантов `Options.json` или `Options.value`.
- * @returns Результат может содержать `INodeRoot.errors.isFatalError:true`.
+ * @returns Результат может содержать `IRootNode.errors.isFatalError:true`.
  *          Это зависит от установленного параметра `Options.mode` и невалидных данных.
  */
-function modify (options: Options): INodeRoot {
+function modify (options: Options): IRootNode {
 
   const mode = createEditMode(options.mode || undefined)
   const editStage = createEditStage()

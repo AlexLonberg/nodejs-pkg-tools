@@ -1,7 +1,7 @@
 import { cwd } from 'node:process'
 import { isAbsolute, normalize, resolve, dirname } from 'node:path'
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
-import type { BaseOptions, INodeRoot, JsonOption, Options } from './types.js'
+import type { BaseOptions, IRootNode, JsonOption, Options } from './types.js'
 import { isNil } from './std.js'
 import {
   type TErrorCode,
@@ -17,7 +17,7 @@ function resolvePath (path?: null | string): string {
     : isAbsolute(path) ? normalize(path) : resolve(path)
 }
 
-function rootError (code: TErrorCode, path: string, mode?: null | string): INodeRoot {
+function rootError (code: TErrorCode, path: string, mode?: null | string): IRootNode {
   const editMode = createEditMode(mode || undefined)
   const errors = new Errors(editMode.isError)
   errors._addError(code, [path])
@@ -37,10 +37,10 @@ function rootError (code: TErrorCode, path: string, mode?: null | string): INode
  *                значение или JSON строка, как и в случае с функцией `modify()`.
  * @param    dest Место назначения. Например "dest/package.json".
  *                Если параметр неустановлен, результат все равно войдет в возвращаемый объект.
- * @returns Результат может содержать `INodeRoot.errors.isFatalError:true`.
+ * @returns Результат может содержать `IRootNode.errors.isFatalError:true`.
  *          Это зависит от установленного параметра `Options.mode` и невалидных данных.
  */
-function rwModify (options: BaseOptions | Options, src?: null | string, dest?: null | string): INodeRoot {
+function rwModify (options: BaseOptions | Options, src?: null | string, dest?: null | string): IRootNode {
   const opts = { ...options }
   if (!isNil(src)) {
     const path = resolvePath(src)
