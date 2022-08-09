@@ -1,6 +1,6 @@
 {
   "name": "nodejs-pkg-tools",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "JS pkg tools",
   "author": "Alexander Lonberg <alexlonberg@gmail.com>",
   "repository": "https://github.com/AlexLonberg/nodejs-pkg-tools.git",
@@ -26,8 +26,7 @@
   "scripts": {
     "test": "jest",
     "build": "tsc --project tsconfig.dist.json",
-    "build:npm": "tsc --project tsconfig.dist.json --outDir npm",
-    "postbuild:npm": "node ./postbuild.js"
+    "build:npm": "tsc --project tsconfig.dist.json --declarationMap false --outDir npm"
   },
   "devDependencies": {
     "@types/jest": "^28.1.6",

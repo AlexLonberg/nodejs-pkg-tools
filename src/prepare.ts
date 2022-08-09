@@ -43,7 +43,7 @@ function jsonParse (json: string): [false, null] | [true, ValidValue] {
     const value = JSON.parse(json)
     return [true, value]
   } catch (_) {
-    console.log(_)
+    // console.log(_)
     return [false, null]
   }
 }
