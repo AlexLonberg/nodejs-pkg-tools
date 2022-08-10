@@ -43,6 +43,7 @@ class PropPath {
   }
 
   tryEndPoint (): null | PropPathEndPoint {
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
     return this.isEndPoint ? new PropPathEndPoint(this.#path) : null
   }
 }

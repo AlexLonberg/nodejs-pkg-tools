@@ -41,7 +41,6 @@
     "no-unmodified-loop-condition": "error",
     "no-unreachable-loop": "error",
     "no-unused-private-class-members": "error",
-    // Переопределено в @typescript-eslint
     "no-use-before-define": "off",
     "require-atomic-updates": "error",
     // * Предложения
@@ -162,19 +161,8 @@
       "error",
       "outside"
     ],
-    // Для eslint отключаем эту опцию - он не разбирается в типах и подсвечивает такую ошибку:
-    // (T & { [k in K]: unknown })
-    //         ^ no-unused-vars
     "no-unused-vars": "off",
     // * TypeScript https://typescript-eslint.io/rules/
-    "@typescript-eslint/await-thenable": [
-      "error"
-    ],
-    "@typescript-eslint/class-literal-property-style": [
-      "error",
-      "getters"
-    ],
-    // Обязательная опция, отключена в eslint, см.выше.
     "@typescript-eslint/no-unused-vars": [
       "error",
       {
@@ -182,15 +170,27 @@
         "argsIgnorePattern": "^_+$"
       }
     ],
+    "@typescript-eslint/await-thenable": [
+      "error"
+    ],
+    "@typescript-eslint/class-literal-property-style": [
+      "error",
+      "getters"
+    ],
     "@typescript-eslint/no-use-before-define": [
       "error",
       {
-        "ignoreTypeReferences": true,
-        "typedefs": false,
         "functions": false,
-        "classes": false,
+        "classes": true,
         "variables": true,
-        "allowNamedExports": false
+        "ignoreTypeReferences": true,
+        "typedefs": false
+      }
+    ],
+    "@typescript-eslint/ban-ts-comment": [
+      "error",
+      {
+        "ts-ignore": "allow-with-description"
       }
     ]
   }
