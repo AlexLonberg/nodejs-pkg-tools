@@ -50,7 +50,7 @@ class PropPath {
 /**
  * Этот класс является заглушкой PropPath. Цель его - явно предоставить конечный путь к свойству.
  *   + foo.*.bar   - PropPath
- *   + foo.box.bar - PropPathEndPoint гарантирует такой путь, что можно использовать при создании свойств без ошибок.
+ *   + foo.box.bar - PropPathEndPoint гарантирует конечный путь, который можно использовать при создании свойств без ошибок.
  */
 class PropPathEndPoint extends PropPath {
   constructor(path: string[]) {
