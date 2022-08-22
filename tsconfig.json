@@ -15,7 +15,7 @@
     "checkJs": false,
     // * Modules
     "module": "NodeNext",
-    "moduleResolution": "nodenext",
+    "moduleResolution": "NodeNext",
     "rootDir": "./src",
     "types": [
       "node",
