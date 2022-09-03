@@ -3,5 +3,5 @@
 .coverage/
 **/node_modules/
 dist/
-temp/
 npm/
+__test_dir__/

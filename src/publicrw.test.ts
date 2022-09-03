@@ -8,13 +8,13 @@ import {
 } from './index.js'
 import { isArray } from './std.js'
 
-// NOTE ТЕСТ ПИШЕТ НА ДИСК. Этот файл не работает без
-// !!! закомментирования строк publicrw*** в jest.config.ts.
+// NOTE ТЕСТ ПИШЕТ НА ДИСК. Этот файл не работает без закомментирования строк publicrw***
+//      в jest.config.ts -> coveragePathIgnorePatterns | modulePathIgnorePatterns
 
 // !!! Установите путь явно или используйте process.cwd() - неизвестно что выдаст jest.
 const workDir = process.cwd()
 const src = join(workDir, 'package.json')
-const dest = join(workDir, 'temp', 'package.json')
+const dest = join(workDir, '__test_dir__', 'package.json')
 
 test('rwModify(...)', () => {
   const replacer: Modifier = (v, _, __) => [true, true, (v as string).replace('dist/', '')]

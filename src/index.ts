@@ -29,7 +29,7 @@ export {
   isPrimitive,
   isJsonPrimitive,
   isSymbol,
-  isNil,
+  isNullish,
   isBoolean,
   isNaN,
   isNumber,
@@ -53,3 +53,8 @@ export {
   resolvePath,
   rwModify
 } from './publicrw.js'
+export {
+  type Filter,
+  clearDir,
+  copyDir
+} from './dirs.js' 

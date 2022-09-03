@@ -7,9 +7,10 @@
     "**/.git": true,
     "**/node_modules": true,
     "dist": true,
-    "npm": true
+    "npm": true,
+    "__test_dir__": true
   },
-  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "typescript.tsdk": "node_modules/typescript/lib",
   "cSpell.words": [
     "publicrw"
   ]

@@ -2,7 +2,7 @@ import { cwd } from 'node:process'
 import { isAbsolute, normalize, resolve, dirname } from 'node:path'
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import type { BaseOptions, IRootNode, JsonOption, Options } from './types.js'
-import { isNil } from './std.js'
+import { isNullish } from './std.js'
 import {
   type TErrorCode,
   errorCode
@@ -12,7 +12,7 @@ import { Errors } from './errors.js'
 import { createEditMode } from './helper.js'
 
 function resolvePath (path?: null | string): string {
-  return isNil(path)
+  return isNullish(path)
     ? cwd()
     : isAbsolute(path) ? normalize(path) : resolve(path)
 }
@@ -42,7 +42,7 @@ function rootError (code: TErrorCode, path: string, mode?: null | string): IRoot
  */
 function rwModify (options: BaseOptions | Options, src?: null | string, dest?: null | string): IRootNode {
   const opts = { ...options }
-  if (!isNil(src)) {
+  if (!isNullish(src)) {
     const path = resolvePath(src)
     try {
       (opts as JsonOption).json = readFileSync(path, { encoding: 'utf8' })
@@ -51,7 +51,7 @@ function rwModify (options: BaseOptions | Options, src?: null | string, dest?: n
     }
   }
   const result = modify(opts as JsonOption)
-  if (result.errors.isFatalError || isNil(dest)) return result
+  if (result.errors.isFatalError || isNullish(dest)) return result
   const destPath = resolvePath(dest)
   try {
     mkdirSync(dirname(destPath), { recursive: true })

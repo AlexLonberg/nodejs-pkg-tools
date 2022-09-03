@@ -18,17 +18,23 @@ export default {
   ],
   coverageProvider: 'v8',
   coveragePathIgnorePatterns: [
+    'types.ts',
+    'interfaces.ts',
+    // Читай ниже.
     'publicrw.test.ts',
     'publicrw.ts',
-    'types.ts',
-    'interfaces.ts'
+    'dirs.test.ts',
+    'dirs.ts'
   ],
   modulePathIgnorePatterns: [
+    // По умолчанию эти файлы отключены. Тест пишет на диск.
+    // Закомментируйте эти строки для включения в тест.
     'publicrw.test.ts',
-    'publicrw.ts'
+    'publicrw.ts',
+    'dirs.test.ts',
+    'dirs.ts'
   ],
   roots: [
     'src/'
-  ],
-
+  ]
 } as Config.InitialOptions

@@ -35,7 +35,7 @@ function isSymbol (v: any): v is symbol {
   return typeof v === 'symbol'
 }
 
-function isNil (v: any): v is (undefined | null) {
+function isNullish (v: any): v is (undefined | null) {
   return typeof v === 'undefined' || v === null
 }
 
@@ -59,23 +59,23 @@ function isString (v: any): v is string {
   return typeof v === 'string'
 }
 
-function isArray (v: any): v is any[] {
+function isArray<T extends any[]> (v: T | any): v is T {
   return Array.isArray(v)
 }
 
-function isObject (v: any): v is object {
+function isObject<T extends object> (v: T | any): v is T {
   return (typeof v === 'object') && (v !== null)
 }
 
-function isStruct (v: any): v is StructLike<any> {
+function isStruct<T extends object> (v: T | any): v is T {
   return !Array.isArray(v) && isObject(v)
 }
 
-function isFunction (v: any): v is AnyFunction {
+function isFunction<T extends ((...a: any[]) => any)> (v: T | any): v is T {
   return typeof v === 'function'
 }
 
-function hasOwn<T extends object, K extends (string | symbol)> (obj: T, key: K): obj is (T & { [k in K]: any }) {
+function hasOwn<T extends object, K extends (string | symbol)> (obj: T, key: K): obj is (T & { [k in K]: K extends keyof T ? T[K] : unknown }) {
   return Object.hasOwn(obj, key)
 }
 
@@ -89,7 +89,7 @@ export {
   isPrimitive,
   isJsonPrimitive,
   isSymbol,
-  isNil,
+  isNullish,
   isBoolean,
   isNaN,
   isNumber,
