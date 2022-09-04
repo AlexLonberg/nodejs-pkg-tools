@@ -75,7 +75,7 @@ function isFunction<T extends ((...a: any[]) => any)> (v: T | any): v is T {
   return typeof v === 'function'
 }
 
-function hasOwn<T extends object, K extends (string | symbol)> (obj: T, key: K): obj is (T & { [k in K]: K extends keyof T ? T[K] : unknown }) {
+function hasOwn<T extends object, K extends (string | symbol)> (obj: T, key: K): obj is (T & { [_ in K]: K extends keyof T ? T[K] : unknown }) {
   return Object.hasOwn(obj, key)
 }
 

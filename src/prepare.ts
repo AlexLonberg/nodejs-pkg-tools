@@ -32,7 +32,8 @@ import type {
   SampleStruct,
   SampleRaw,
   Sample,
-  Options
+  Options,
+  JsonOption
 } from './types.js'
 import { RNode } from './node.js'
 import { PropPath } from './path.js'
@@ -217,7 +218,7 @@ function prepareOptions (helper: IHelper, options: Options): PreparedOptions {
   // ## JSON | unknown
 
   if (hasOwn(options, 'json')) {
-    [ok, value] = jsonParse(options.json)
+    [ok, value] = jsonParse((options as JsonOption).json)
     if (!ok) {
       helper.addError(errorCode.JSON_PARSE, [])
       helper.setFatalError()
