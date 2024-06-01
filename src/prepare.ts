@@ -61,13 +61,13 @@ function getValueType (value: unknown): TValueTypeNone | TValueType {
 
 /**
  * Подготавливает валидные значения объекта.
- * 
+ *
  * Эта функция проверяет круговые ссылки и устанавливает ошибку.
  * Пустые объекты и массивы не удаляются, т.к. контейнеры могут быть явно заданы пользователем для последующего обхода.
- * 
+ *
  * Первый уровень PreparedValue всегда будет содержать ключ `-1` -> `[-1, type, value]`,
  * который следует отбрасывать при построении дерева на целевом свойстве или RNode.
- * 
+ *
  * @param       rawValue Любое значение.
  * @param abortWithError Прервать операцию при любой ошибке.
  * @returns Кортеж:
@@ -236,7 +236,7 @@ function prepareOptions (helper: IHelper, options: Options): PreparedOptions {
   const pv = helper.prepareValue([], value)
   if (!pv) helper.setFatalError()
   if (helper.isFatalError) return { isFatalError: true }
-  const node = new RNode(helper, (helper.mode.isStrict ? helper.RSCreator.RemoveDef() : helper.RSCreator.KeepDef()), pv as PreparedValue)
+  const node = new RNode(helper, (helper.mode.isStrict ? helper.RSCreator.RemoveDef() : helper.RSCreator.KeepDef()), pv as unknown as PreparedValue)
 
   // ## include/exclude
 
@@ -270,7 +270,7 @@ export {
   parseStringPath,
   prepareStringList,
   prepareSample,
-  // 
+  //
   prepareValue,
   prepareOptions
 }

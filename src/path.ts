@@ -19,7 +19,7 @@ class PropPath {
 
   /**
    * Разделяет путь на первый элемент и остаток.
-   * 
+   *
    * Если этот метод возвращает ненулевой кортеж, первый элемент `PropPath` будет
    * обязательно непустым, и точно возвратит ключ `toStringFirstKey():string`.
    */
@@ -34,7 +34,7 @@ class PropPath {
 
   toStringFirstKey (): null | string {
     return this.#path.length
-      ? this.#path[0] as string
+      ? this.#path[0] as unknown as string
       : null
   }
 
@@ -43,7 +43,6 @@ class PropPath {
   }
 
   tryEndPoint (): null | PropPathEndPoint {
-    // eslint-disable-next-line @typescript-eslint/no-use-before-define
     return this.isEndPoint ? new PropPathEndPoint(this.#path) : null
   }
 }
@@ -58,7 +57,8 @@ class PropPathEndPoint extends PropPath {
     super(path)
   }
   // ? Иначе TS воспринимает PropPathEndPoint === PropPath
-  get _ (): boolean {
+  // eslint-disable-next-line @typescript-eslint/class-literal-property-style
+  get _fake (): boolean {
     return true
   }
 }

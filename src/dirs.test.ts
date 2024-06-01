@@ -11,20 +11,21 @@ import {
   copyDir
 } from './index.js'
 
-// NOTE ТЕСТ ПИШЕТ НА ДИСК. Этот файл не работает без закомментирования строк dirs***
-//      в jest.config.ts -> coveragePathIgnorePatterns | modulePathIgnorePatterns
+// NOTE Тест пишет на диск в "".temp/__test_dir__".
 
 // !!! Установите путь явно или используйте process.cwd() - неизвестно что выдаст jest.
 const workDir = process.cwd()
-const testDir = join(workDir, '__test_dir__')
+const testDir = join(workDir, '.temp', '__test_dir__')
 
 const srcDirName = 'folder'
 const destDirName = 'folder-dest'
+const destDirFiles = 'folder-files'
 
 const structDir = {
   'doc.txt': 'some text\n',
   src: {
-    'index.js': '// Example\n\nconsole.log(123)\n'
+    'index.js': '// Example\n\nconsole.log(123)\n',
+    'code.js': '// Example\n\nconsole.log(123)\n'
   },
   'symlink-file': [`${srcDirName}/doc.txt`, 'file'],
   'symlink-dir': [`${srcDirName}/src`, 'dir'],
@@ -36,6 +37,7 @@ beforeAll(() => {
   mkdirSync(testDir, { recursive: true })
   rmSync(join(testDir, srcDirName), { force: true, recursive: true })
   rmSync(join(testDir, destDirName), { force: true, recursive: true })
+  rmSync(join(testDir, destDirFiles), { force: true, recursive: true })
 
   const create = (curr: string, some: object) => {
     const currDir = join(testDir, curr)
@@ -102,6 +104,20 @@ test('copyDir', () => {
   const s1 = readToStruct(join(testDir, srcDirName), fl)
   const s2 = readToStruct(join(testDir, destDirName), fl)
   expect(equals(s1, s2)).toBe(true)
+})
+
+test('copyDir with [file, ...]', () => {
+  const dest = join(testDir, destDirFiles)
+  const res = copyDir(join(testDir, srcDirName), dest, ['doc.txt', '/src\\code.js'])
+  expect(res).toBe(true)
+
+  const top = readdirSync(dest, { encoding: 'utf8', withFileTypes: false })
+  const src = readdirSync(join(dest, 'src'), { encoding: 'utf8', withFileTypes: false })
+  expect(top.length).toBe(2)
+  expect(src.length).toBe(1)
+  expect(top.includes('doc.txt')).toBe(true)
+  expect(top.includes('src')).toBe(true)
+  expect(src[0]).toBe('code.js')
 })
 
 test('clearDir', () => {

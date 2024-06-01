@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { join } from 'node:path'
 import {
+  type Modifier,
   errorCode,
   makeModifier,
-  Modifier,
   rwModify
 } from './index.js'
 import { isArray } from './std.js'
@@ -14,7 +13,7 @@ import { isArray } from './std.js'
 // !!! Установите путь явно или используйте process.cwd() - неизвестно что выдаст jest.
 const workDir = process.cwd()
 const src = join(workDir, 'package.json')
-const dest = join(workDir, '__test_dir__', 'package.json')
+const dest = join(workDir, '.temp', '__test_dir__', 'package.json')
 
 test('rwModify(...)', () => {
   const replacer: Modifier = (v, _, __) => [true, true, (v as string).replace('dist/', '')]

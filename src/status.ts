@@ -59,8 +59,8 @@ class RetentionStatus {
 
   /**
    * Обновление статуса.
-   * 
-   * @param targetStatus 
+   *
+   * @param targetStatus
    * @returns Статус может быть обновлен, только при условии что аргумент
    *          обладает не меньшим преимуществом чем текущий RetentionStatus.
    */

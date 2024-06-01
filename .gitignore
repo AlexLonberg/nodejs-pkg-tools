@@ -1,7 +1,6 @@
-.private/
-.tsbuildinfo/
-.coverage/
+_*
+.temp/
+.eslintcache
 **/node_modules/
 dist/
 npm/
-__test_dir__/
