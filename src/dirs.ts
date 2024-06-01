@@ -9,12 +9,38 @@ import {
   statSync
 } from 'node:fs'
 import { join, resolve } from 'node:path'
+import { isArray } from './std.js'
 
 type Filter = (rel: string, type: 'dir' | 'file' | 'symlink' | null) => boolean
 
+function createFilter (filter?: Filter | string[]): Filter {
+  if (isArray(filter)) {
+    const files = filter.map((v) => v.replace(/[\\\/]+/g, '/').replace(/^[\\\/]+|[\\\/]+$/g, ''))
+    const folders: string[] = []
+    for (const item of files) {
+      const splitted = item.split('/')
+      splitted.pop()
+      while (splitted.length > 0) {
+        folders.push(splitted.join('/'))
+        splitted.pop()
+      }
+    }
+    return (rel: string, type: 'dir' | 'file' | 'symlink' | null) => {
+      if (type === 'dir') {
+        return folders.includes(rel)
+      }
+      if (type === 'file') {
+        return files.includes(rel)
+      }
+      return false
+    }
+  }
+  return ((filter as unknown as Filter) || ((_, __) => true))
+}
+
 /**
  * Синхронная очистка каталога без удаления самого каталога.
- * 
+ *
  * @param path Путь к каталогу.
  * @returns Возвратит:
  *            + `null`  - если вызов `readdirSync()` завершился ошибкой.
@@ -42,18 +68,24 @@ function clearDir (path: string): null | boolean {
 
 /**
  * Синхронное рекурсивное копирование файлов каталога.
- * 
+ *
  * @param    src Каталог источников.
  * @param   dest Место назначения.
- * @param filter Необязательный фильтр, принимающий параметром путь относительно `src`
+ * @param filter Необязательный фильтр может быть функцией или списком файлов.
+ *               Функция принимает параметром путь относительно `src`
  *               и тип файла - `'dir' | 'file' | 'symlink' | null`.
- *               Функция должна вернуть: `true` - копируем и `false` - не копируем.
+ *               Фильтр должен вернуть: `true` - копируем и `false` - не копируем.
+ *               Массив должен содержать только относительные пути к копируемым файлам,
+ *               директории не допускаются, например: `['README.md', 'docs/help.md']`.
+ *               Независимо от слеша OS `\/`, последние приводятся к правым `your/path`.
  * @returns Возвратит:
  *            + `null`  - если вызов `readdirSync()` завершился ошибкой.
  *            + `true`  - если не произошло ошибок при копировании файлов или каталог `src` пуст.
  *            + `false` - если произошла хотя бы одна ошибка.
  */
-function copyDir (src: string, dest: string, filter?: Filter): null | boolean {
+function copyDir (src: string, dest: string, filter?: Filter | string[]): null | boolean {
+
+  const customFilter = createFilter(filter)
 
   const getDirent = (path: string): false | null | Dirent[] => {
     let files: Dirent[]
@@ -67,7 +99,6 @@ function copyDir (src: string, dest: string, filter?: Filter): null | boolean {
 
   const absSrc = resolve(src)
   const absDest = resolve(dest)
-  const fl = filter || ((_, __) => true)
   let noError = true
 
   const recursive = (curr: string, ds: Dirent[]): void => {
@@ -80,7 +111,7 @@ function copyDir (src: string, dest: string, filter?: Filter): null | boolean {
             ? 'dir'
             : null
       const rel = join(curr, item.name)
-      if (!fl(rel, type)) continue
+      if (!customFilter(rel.replace(/[\\\/]+/g, '/'), type)) continue
 
       const srcPath = join(absSrc, rel)
 
@@ -127,4 +158,4 @@ export {
   type Filter,
   clearDir,
   copyDir
-} 
+}

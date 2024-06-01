@@ -1,40 +1,40 @@
-import type { Config } from '@jest/types'
+/**
+ * For a detailed explanation regarding each configuration property, visit:
+ * https://jestjs.io/docs/configuration
+ */
 
-// https://jestjs.io/ru/docs/configuration
-export default {
-  preset: 'ts-jest',
+// import type { Config } from 'jest'
+import type { JestConfigWithTsJest } from 'ts-jest'
+
+const config: JestConfigWithTsJest = {
   testEnvironment: 'node',
-  moduleFileExtensions: ['ts', 'js'],
-  // DOC Ошибка при импорте файлов с расширением *.js, которое требует TypeScript.
-  // https://github.com/swc-project/jest/issues/64#issuecomment-1029753225
-  // https://jestjs.io/ru/docs/configuration#modulenamemapper-objectstring-string--arraystring
-  moduleNameMapper: {
-    '^(\\.{1,2}/.*)\\.js$': '$1',
-  },
-  coverageDirectory: './.coverage',
+  clearMocks: true,
   collectCoverage: true,
-  collectCoverageFrom: [
-    "src/**/*.{js,ts}"
-  ],
+  rootDir: 'src',
+  // относительно корня rootDir
+  coverageDirectory: '../.temp/coverage',
   coverageProvider: 'v8',
-  coveragePathIgnorePatterns: [
-    'types.ts',
-    'interfaces.ts',
-    // Читай ниже.
-    'publicrw.test.ts',
-    'publicrw.ts',
-    'dirs.test.ts',
-    'dirs.ts'
+  coverageReporters: [
+    // "json",
+    // "text",
+    'lcov',
+    // "clover"
   ],
-  modulePathIgnorePatterns: [
-    // По умолчанию эти файлы отключены. Тест пишет на диск.
-    // Закомментируйте эти строки для включения в тест.
-    'publicrw.test.ts',
-    'publicrw.ts',
-    'dirs.test.ts',
-    'dirs.ts'
+  globals: {
+    'ts-jest': {
+      tsconfig: 'tsconfig.json',
+    }
+  },
+  moduleFileExtensions: ['js', 'ts'],
+  moduleNameMapper: {
+    '(.+)\\.js$': '$1'
+  },
+  preset: 'ts-jest',
+  testMatch: [
+    '**/?(*.)+(test).[tj]s'
   ],
-  roots: [
-    'src/'
-  ]
-} as Config.InitialOptions
+  // coveragePathIgnorePatterns: [],
+  // modulePathIgnorePatterns: [],
+}
+
+export default config

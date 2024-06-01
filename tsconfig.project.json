@@ -1,0 +1,31 @@
+{
+  // Этот файл только для файлов `*config*`
+  "compilerOptions": {
+    "rootDir": ".",
+    // Эти опции noEmit/declaration/tsBuildInfoFile должны быть включены, иначе нельзя подключить данный файл как "references"
+    "composite": true,
+    "noEmit": false,
+    // Файл tsconfig.json говорит: "Что этот файл не может использовать noEmit:true",
+    // а при удалении опции этот файл отвечает: "Не могу перезаписать файл eslint.config.js".
+    // ... таким образом просто укажем временный каталог
+    "outDir": "./.temp",
+    // ... а дальше требует разрешить конфликт перезаписи .tsbuildinfo
+    "tsBuildInfoFile": "./.temp/.tsbuildinfo_composite",
+    "types": [
+      "jest"
+    ],
+    "allowJs": true,
+    "checkJs": false,
+    "strict": true,
+    "verbatimModuleSyntax": false
+  },
+  "include": [],
+  "files": [
+    "eslint.config.js",
+    "jest.config.ts"
+  ],
+  // https://typestrong.org/ts-node/docs/configuration/
+  "ts-node": {
+    "transpileOnly": true
+  }
+}

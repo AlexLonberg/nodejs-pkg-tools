@@ -6,12 +6,18 @@
   "search.exclude": {
     "**/.git": true,
     "**/node_modules": true,
+    ".temp": true,
     "dist": true,
-    "npm": true,
-    "__test_dir__": true
+    "npm": true
   },
   "typescript.tsdk": "node_modules/typescript/lib",
   "cSpell.words": [
+    "lcov",
     "publicrw"
-  ]
+  ],
+  "jest.runMode": {
+    "type": "on-demand",
+    "coverage": false,
+    "showInlineError": false
+  }
 }

@@ -30,7 +30,7 @@ function nodeRoot (mode: IEditMode, e: IErrors, node: IRNode, space: number): IR
 
 /**
  * Модификация JSON строки или объекта.
- * 
+ *
  * @param options В опциях должен быть указан один из вариантов `Options.json` или `Options.value`.
  * @returns Результат может содержать `IRootNode.errors.isFatalError:true`.
  *          Это зависит от установленного параметра `Options.mode` и невалидных данных.

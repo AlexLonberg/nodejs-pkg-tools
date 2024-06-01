@@ -1,5 +1,3 @@
-/* eslint-disable no-sequences */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Options, ValidValue } from './types.js'
 import {
   errorCode,

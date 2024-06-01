@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { valueType } from './constants.js'
 import {
   jsonParse,

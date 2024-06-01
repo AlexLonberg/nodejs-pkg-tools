@@ -1,42 +1,52 @@
 {
   "compilerOptions": {
-    // * Type Checking
-    "strict": true,
-    "allowUnreachableCode": false,
-    "exactOptionalPropertyTypes": true,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitOverride": true,
-    "noImplicitReturns": true,
-    "noUncheckedIndexedAccess": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    // * JavaScript Support
-    "allowJs": false,
-    "checkJs": false,
-    // * Modules
+    "incremental": false,
+    "tsBuildInfoFile": null,
+    // Для текущей версии NodeJS смотрим поддержку здесь https://node.green/
+    "target": "ES2022",
+    "lib": [
+      "ESNext"
+    ],
     "module": "NodeNext",
-    "moduleResolution": "NodeNext",
     "rootDir": "./src",
+    "moduleResolution": "NodeNext",
     "types": [
       "node",
       "jest"
     ],
-    // * Language and Environment
-    // Для текущей версии NodeJS смотрим поддержку здесь https://node.green/
-    "target": "ES2022",
-    // * Emit
+    "declaration": false,
+    "declarationMap": false,
+    "outDir": "./dist",
+    "removeComments": false,
     "noEmit": true,
-    // * Completeness
-    "skipLibCheck": false,
-    // * Interop Constraints
-    "esModuleInterop": true,
+    "noEmitOnError": false,
+    "declarationDir": null,
     "isolatedModules": true,
+    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    // * Editor Support
-    "disableSizeLimit": true
+    "strict": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitReturns": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "allowUnreachableCode": false,
+    "skipLibCheck": true,
+    "disableSizeLimit": true,
+    // На момент 01.06.2024 с этой опцией(true) не запускается Jest
+    "verbatimModuleSyntax": false
+  },
+  "typeAcquisition": {
+    "disableFilenameBasedTypeAcquisition": true
   },
   "include": [
-    "src/**/*.ts",
-    "src/**/*.d.ts"
+    "src/**/*.ts"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.project.json"
+    }
   ]
 }

@@ -1,4 +1,3 @@
-
 import {
   RetentionStatus
 } from './status.js'
@@ -35,7 +34,7 @@ test('RetentionStatus() change of', () => {
   expect(clone.tryUpdate(keepOption)).toBe(true)
   expect(clone.tryUpdate(removeSample)).toBe(true)
   expect(clone.tryUpdate(keepSample)).toBe(true)
-  // Нельзя установить статус с меньшим прииоритетом
+  // Нельзя установить статус с меньшим приоритетом
   expect(clone.tryUpdate(removeOption)).toBe(false)
   // Но можно изменить тип
   expect(clone.isKeep).toBe(true)

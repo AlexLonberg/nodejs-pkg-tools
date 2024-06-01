@@ -14,7 +14,7 @@ import {
   errorCode,
   valueType
 } from './constants.js'
-import { JsonPrimitive } from './std.js'
+import type { JsonPrimitive } from './std.js'
 
 class CNode implements INode {
 
@@ -61,7 +61,7 @@ class CNode implements INode {
 
   #addKeyToPath (acc: (string | number)[]) {
     if (this.#parent) {
-      acc.unshift(this.#key as (string | number))
+      acc.unshift(this.#key as unknown as (string | number))
       this.#parent.#addKeyToPath(acc)
     }
   }
@@ -71,7 +71,7 @@ class CNode implements INode {
    */
   getPath (): (string | number)[] {
     if (!this.#parent) return []
-    const acc = [this.#key as (string | number)]
+    const acc = [this.#key as unknown as (string | number)]
     this.#parent.#addKeyToPath(acc)
     return acc
   }
@@ -174,7 +174,7 @@ class CNode implements INode {
 
   /**
    * Возвращает JS представление объекта.
-   * 
+   *
    * @param all Если установлено true, возвратит объект независимо от статуса хранения.
    * @returns Tuple:
    *   + [0] - Флаг хранения keep:true/remove:false только для текущего узла. Вложенные узлы могут иметь другой флаг.

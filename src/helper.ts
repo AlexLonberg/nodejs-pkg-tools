@@ -7,7 +7,7 @@ import {
   editModeCode,
   editingStage
 } from './constants.js'
-import { Errors } from './errors.js'
+import type { Errors } from './errors.js'
 import { RetentionStatus } from './status.js'
 import { prepareValue } from './prepare.js'
 
@@ -66,7 +66,7 @@ function createHelper (mode: IEditMode, stage: IEditStage, errors: Errors): IHel
      * Разбор значения.
      * @param     path Путь используется для ошибки.
      * @param rawValue Любое значение.
-     * @returns 
+     * @returns
      */
     prepareValue (path: (number | string)[], rawValue: unknown): null | PreparedValue {
       const [ep, value] = prepareValue(rawValue, mode.isError)

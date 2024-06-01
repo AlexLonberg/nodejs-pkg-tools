@@ -15,7 +15,7 @@ type MarkerWithError = Marker | { [marker]: { handler: null, type: null, error: 
 
 /**
  * Создает обработчик и возвращает маркер, устанавливаемый на свойства Sample:{'': ModifierMarker}.
- * 
+ *
  * @param action Вариантами могут быть:
  *                 + true     - Сохраняет свойство.
  *                 + false    - Удаляет свойство.
@@ -43,7 +43,7 @@ function makeModifier (action: boolean | Modifier): ModifierMarker {
 
 /**
  * Возвращает функцию-модификатор или любое значение.
- * 
+ *
  * @param value Значение свойства `Sample:{'': value}`.
  * @returns Кортеж:
  *            + [0] - Если `false` - невалидное значение `ModifierMarker`, все остальные параметры игнорируются.
